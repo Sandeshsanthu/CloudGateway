@@ -6,7 +6,7 @@ node {
         checkout([$class: 'GitSCM',
          branches: [[name: '*/main']],
           extensions: [],
-          userRemoteConfigs: [[url: 'git@github.com:Sandeshsanthu/CloudGateway.git']]
+          userRemoteConfigs: [[url: 'https://github.com/Sandeshsanthu/CloudGateway.git']]
         ])
     }
     stage('Build and Push') {
@@ -16,7 +16,7 @@ node {
             sh "${mvnCMD} clean install jib:build -DREPO_URL=${REGISTRY_URL}/${PROJECT_ID}/${ARTIFACT_REGISTRY}"
         }
     }
-    stage('Debug') {
+    stage('Debugs') {
         // Print the content of the deployment.yaml file
         sh "cat k8s/deployment.yaml"
     }
